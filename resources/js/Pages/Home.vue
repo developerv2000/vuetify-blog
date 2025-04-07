@@ -10,7 +10,6 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Welcome" />
-    <h1>Its home, check if vuetify is working!</h1>
-    <v-btn>Elevation 4</v-btn>
+    <Head title="Home" />
+    {{ $page }}
 </template>
