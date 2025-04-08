@@ -22,8 +22,10 @@ export default defineConfig({
         vuetify(), // Enables Vuetify support for Vue components
     ],
     resolve: {
+        // Creates aliases for easier imports
         alias: {
-            '@': fileURLToPath(new URL('./resources/js', import.meta.url)), // Creates '@' alias for easier imports
+            '@': fileURLToPath(new URL('./resources/js', import.meta.url)),
+            '@images': fileURLToPath(new URL('./resources/images', import.meta.url)),
         },
     },
     ssr: {

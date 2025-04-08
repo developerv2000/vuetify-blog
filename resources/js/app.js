@@ -17,9 +17,6 @@ import { createVuetify } from 'vuetify';
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'; // Use Material Design Icons
 import { ru } from 'vuetify/locale'; // Russian locale support
 
-// Define the app name, using an environment variable if available
-const appName = import.meta.env.VITE_APP_NAME || 'Blog';
-
 // Configure Vuetify with localization, icons, and SSR support
 const vuetify = createVuetify({
     locale: {
@@ -35,10 +32,13 @@ const vuetify = createVuetify({
     ssr: true, // Enable Server-Side Rendering support
 });
 
+// Define the app name, using an environment variable if available
+const appName = import.meta.env.VITE_APP_NAME || 'Blog';
+
 // Create and configure the Inertia.js application
 createInertiaApp({
     // Set the document title dynamically
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => title ? `${title} - ${appName}` : appName,
 
     // Resolve the Vue components dynamically based on the route
     resolve: (name) =>

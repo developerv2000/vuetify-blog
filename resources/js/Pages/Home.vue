@@ -1,15 +1,7 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
-
-defineProps({
-    phpVersion: {
-        type: String,
-        required: true,
-    },
-});
+import FrontLayout from "@/Layouts/FrontLayout.vue";
 </script>
-
+    
 <template>
-    <Head title="Home" />
-    {{ $page }}
+    <FrontLayout>Content</FrontLayout>
 </template>
