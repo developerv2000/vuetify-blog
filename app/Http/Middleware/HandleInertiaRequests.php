@@ -2,16 +2,15 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Inertia\Inertia;
 use Tighten\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
     /**
-     * The root template that is loaded on the first page visit.
+     * Set a default root view — will be overwritten dynamically.
      *
      * @var string
      */
@@ -26,7 +25,31 @@ class HandleInertiaRequests extends Middleware
     }
 
     /**
-     * Define the props that are shared by default.
+     * Handle an incoming request.
+     */
+    public function handle($request, \Closure $next)
+    {
+        // Dynamically set the root view based on the route
+        if ($request->route()->is('dashboard*')) {
+            Inertia::setRootView('dashboard');
+        } else {
+            Inertia::setRootView('frontend');
+        }
+
+        // Resolve component path based on the route prefix
+        Inertia::resolveComponentUsing(function ($name) use ($request) {
+            if ($request->route()->is('dashboard*')) {
+                return "resources/js/dashboard/pages/{$name}.vue";
+            }
+
+            return "resources/js/front/pages/{$name}.vue";
+        });
+
+        return parent::handle($request, $next);
+    }
+
+    /**
+     * Share default props for every Inertia response.
      *
      * @return array<string, mixed>
      */

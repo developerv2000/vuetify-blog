@@ -3,5 +3,7 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 </script>
 
 <template>
-    <FrontLayout></FrontLayout>
+    <FrontLayout>
+        
+    </FrontLayout>
 </template>

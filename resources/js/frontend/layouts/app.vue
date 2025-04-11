@@ -1,5 +1,5 @@
 <script setup>
-import FrontLeftbar from '@/Sidebars/FrontLeftbar.vue';
+import FrontLeftbar from '@/Front/Layouts/leftbar.vue';
 
 defineProps({
     includeLeftbar: {
@@ -14,7 +14,9 @@ defineProps({
             <div class="d-flex">
                 <FrontLeftbar v-if="includeLeftbar"></FrontLeftbar>
 
-                <slot></slot>
+                <slot>
+
+                </slot>
             </div>
         </v-main>
     </v-app>

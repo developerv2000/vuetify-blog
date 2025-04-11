@@ -1,20 +1,15 @@
 <?php
 
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', [MainController::class, 'home'])->name('home');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::controller(MainController::class)->group(function () {
+    Route::get('/', [MainController::class, 'home'])->name('home');
+    Route::get('/about', [MainController::class, 'home'])->name('home');
+    Route::get('/contacts', [MainController::class, 'home'])->name('home');
 });
+
+Route::get('/posts/{record}', [PostController::class, 'show'])->name('show');
 
 require __DIR__.'/auth.php';
