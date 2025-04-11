@@ -34,7 +34,6 @@ import profileImageUrl from "@images/profile.jpg";
                 >
                     <v-btn
                         v-bind="props"
-                        :key="icon"
                         :icon="icon"
                         variant="outlined"
                         rounded="0"
@@ -49,7 +48,11 @@ import profileImageUrl from "@images/profile.jpg";
             </div>
         </div>
 
-        <v-btn class="w-100 mt-auto text-capitalize" color="light-blue-darken-4" size="large">
+        <v-btn
+            class="w-100 mt-auto text-capitalize"
+            color="light-blue-darken-4"
+            size="large"
+        >
             Hire me
         </v-btn>
     </v-sheet>
