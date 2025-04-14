@@ -5,7 +5,7 @@ import profileImageUrl from "@images/frontend/profile.jpg";
 
 <template>
     <v-sheet
-        class="h-screen d-flex flex-column align-center pa-8 text-center"
+        class="leftbar position-fixed h-screen d-flex flex-column align-center ml-n6 pa-8 text-center"
         width="350"
     >
         <v-avatar size="210" class="pa-4 bg-light-blue-darken-4">
@@ -59,6 +59,10 @@ import profileImageUrl from "@images/frontend/profile.jpg";
 </template>
 
 <style scoped>
+.leftbar {
+    transform: translateX(-100%); /* Translate because of position fixed */
+}
+
 .profile-name {
     font-size: 40px !important;
 }

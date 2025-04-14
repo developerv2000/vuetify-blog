@@ -4,6 +4,6 @@ import FrontLayout from '../layouts/FrontLayout.vue';
 
 <template>
     <FrontLayout>
-
+        
     </FrontLayout>
 </template>

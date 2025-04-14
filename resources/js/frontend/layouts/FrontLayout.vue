@@ -1,5 +1,6 @@
 <script setup>
-import FrontLeftbar from './FrontLeftbar.vue';
+import FrontLeftbar from "./FrontLeftbar.vue";
+import FrontNavbar from "./FrontNavbar.vue";
 
 defineProps({
     includeLeftbar: {
@@ -11,13 +12,17 @@ defineProps({
 <template>
     <v-app class="bg-indigo-lighten-5">
         <v-main max-width="1200px" class="mx-auto w-100">
-            <div class="d-flex">
-                <FrontLeftbar v-if="includeLeftbar"></FrontLeftbar>
+            <FrontLeftbar v-if="includeLeftbar"></FrontLeftbar>
 
-                <slot>
-
-                </slot>
-            </div>
+            <slot>
+                <FrontNavbar></FrontNavbar>
+            </slot>
         </v-main>
     </v-app>
 </template>
+
+<style scoped>
+.v-main {
+    padding-left: 380px;
+}
+</style>
