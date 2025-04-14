@@ -30,20 +30,7 @@ class HandleInertiaRequests extends Middleware
     public function handle($request, \Closure $next)
     {
         // Dynamically set the root view based on the route
-        if ($request->route()->is('dashboard*')) {
-            Inertia::setRootView('dashboard');
-        } else {
-            Inertia::setRootView('frontend');
-        }
-
-        // Resolve component path based on the route prefix
-        Inertia::resolveComponentUsing(function ($name) use ($request) {
-            if ($request->route()->is('dashboard*')) {
-                return "resources/js/dashboard/pages/{$name}.vue";
-            }
-
-            return "resources/js/front/pages/{$name}.vue";
-        });
+        $this->rootView = $request->routeIs('dashboard*') ? 'dashboard' : 'frontend';
 
         return parent::handle($request, $next);
     }
@@ -62,11 +49,11 @@ class HandleInertiaRequests extends Middleware
                 // 'roles' => $request->user()?->roles->pluck('name'),
                 // 'permissions' => $request->user()?->permissions->pluck('name'),
             ],
-            'ziggy' => fn () => [
+            'ziggy' => fn() => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'query' => fn () => $request->query(),
+            'query' => fn() => $request->query(),
         ];
     }
 }

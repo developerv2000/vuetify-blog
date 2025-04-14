@@ -1,9 +1,9 @@
 <script setup>
-import FrontLayout from "@/Layouts/FrontLayout.vue";
+import FrontLayout from '../layouts/FrontLayout.vue';
 </script>
 
 <template>
     <FrontLayout>
-        
+
     </FrontLayout>
 </template>

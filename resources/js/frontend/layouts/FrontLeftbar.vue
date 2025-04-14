@@ -1,6 +1,6 @@
 <script setup>
 import { mdiSend, mdiFacebook, mdiTwitter, mdiInstagram } from "@mdi/js";
-import profileImageUrl from "@images/profile.jpg";
+import profileImageUrl from "@images/frontend/profile.jpg";
 </script>
 
 <template>

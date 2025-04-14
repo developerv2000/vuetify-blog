@@ -1,37 +1,46 @@
-import { defineConfig } from 'vite'; // Import Vite's configuration function
-import laravel from 'laravel-vite-plugin'; // Import Laravel Vite plugin for handling assets
-import vue from '@vitejs/plugin-vue'; // Import Vue plugin for Vite
-import vuetify from 'vite-plugin-vuetify'; // Import Vuetify plugin for Vite (for Material UI components)
-import { fileURLToPath } from 'url'; // Utility to resolve file paths
+// Vite's config file: defines how Vite builds and serves your frontend assets
+
+import { defineConfig } from 'vite'; // Function to define Vite config
+import laravel from 'laravel-vite-plugin'; // Laravel Vite integration (handles hot reload, asset loading, SSR)
+import vue from '@vitejs/plugin-vue'; // Enables Vue single-file component support (.vue files)
+import vuetify from 'vite-plugin-vuetify'; // Adds Vuetify UI framework integration
+import { fileURLToPath } from 'url'; // Used to resolve absolute file paths
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: 'resources/js/app.js', // Entry point for JavaScript (main frontend file)
-            ssr: 'resources/js/ssr.js', // Server-side rendering entry file (for SSR support)
-            refresh: true, // Enables automatic page reloads when files change
+            // Entry points for frontend and dashboard apps (JS + CSS)
+            input: [
+                'resources/js/frontend/app.js',
+                'resources/js/dashboard/app.js',
+                'resources/css/frontend/app.css',
+                'resources/css/dashboard/app.css',
+            ],
+            ssr: 'resources/js/frontend/ssr.js', // Entry point for server-side rendering
+            refresh: true, // Enables hot reload on file changes
         }),
         vue({
             template: {
+                // Configure how asset URLs are handled inside Vue templates
                 transformAssetUrls: {
-                    base: null, // Prevents modifying asset URLs
-                    includeAbsolute: false, // Avoids transforming absolute URLs
+                    base: null, // Prevent auto-adjusting asset base paths
+                    includeAbsolute: false, // Skip modifying absolute asset URLs
                 },
             },
         }),
-        vuetify(), // Enables Vuetify support for Vue components
+        vuetify(), // Enable Vuetify plugin to support Material UI components
     ],
     resolve: {
-        // Creates aliases for easier imports
         alias: {
-            '@': fileURLToPath(new URL('./resources/js', import.meta.url)),
-            '@images': fileURLToPath(new URL('./resources/images', import.meta.url)),
+            // Set up import aliases for cleaner and shorter import paths
+            '@': fileURLToPath(new URL('./resources/js', import.meta.url)), // `@` -> `resources/js`
+            '@images': fileURLToPath(new URL('./resources/images', import.meta.url)), // `@images` -> `resources/images`
         },
     },
     ssr: {
-        noExternal: ['vuetify'], // Ensures Vuetify is not treated as an external dependency in SSR mode
+        noExternal: ['vuetify'], // Mark Vuetify as internal to avoid issues during SSR
     },
     optimizeDeps: {
-        include: ['vuetify'], // Pre-bundles Vuetify for better performance
-    }
+        include: ['vuetify'], // Pre-bundle Vuetify for better performance
+    },
 });

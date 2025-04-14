@@ -1,5 +1,5 @@
 <script setup>
-import FrontLeftbar from '@/Front/Layouts/leftbar.vue';
+import FrontLeftbar from './FrontLeftbar.vue';
 
 defineProps({
     includeLeftbar: {
