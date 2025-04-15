@@ -1,6 +1,6 @@
 <script setup>
-import useRouteUtils from '@/shared/composables/useRouteUtils';
-import { Link } from '@inertiajs/vue3';
+import useRouteUtils from "@/shared/composables/useRouteUtils";
+import { Link } from "@inertiajs/vue3";
 
 const { isActive } = useRouteUtils();
 
@@ -12,13 +12,29 @@ const links = [
 </script>
 
 <template>
-    <div class="w-100 d-flex justify-center ga-4 pa-4 bg-blue-grey-darken-3">
-        <Link v-for="link in links"
+    <nav class="navbar w-100 d-flex justify-center ga-4 pa-4">
+        <Link
+            v-for="link in links"
             :key="link.name"
             :href="link.href"
-            :class="isActive(link.name) ? 'text-grey-lighten-5' : 'text-grey-lighten-1'"
+            class="navbar__link text-decoration-none"
+            :class="
+                isActive(link.name)
+                    ? 'navbar__link--active text-white'
+                    : 'text-grey-lighten-1'
+            "
         >
             {{ link.label }}
         </Link>
-    </div>
+    </nav>
 </template>
+
+<style scoped>
+.navbar {
+    background-color: #2A4B7C;
+}
+
+.navbar__link:not(.navbar__link--active):hover {
+    color: #E0E0E0 !important;
+}
+</style>
