@@ -2,13 +2,13 @@
 
 import { createVuetify } from 'vuetify'; // Vuetify main setup function
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'; // Material Design Icons (SVG)
-import { ru } from 'vuetify/locale'; // Russian language pack
+import { en } from 'vuetify/locale'; // English language pack
 
 export default createVuetify({
     locale: {
-        locale: 'ru', // Set default language to Russian
+        locale: 'en', // Set default language to English
         fallback: 'en', // Use English if translation missing
-        messages: { ru }, // Translation messages
+        messages: { en }, // Translation messages
     },
     icons: {
         defaultSet: 'mdi', // Use Material Design Icons as default

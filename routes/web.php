@@ -10,6 +10,6 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/contacts', [MainController::class, 'home'])->name('contacts');
 });
 
-Route::get('/posts/{record}', [PostController::class, 'show'])->name('show');
+Route::get('/posts/{record}', [PostController::class, 'show'])->name('posts.show');
 
 require __DIR__.'/auth.php';

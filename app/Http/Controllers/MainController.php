@@ -9,7 +9,11 @@ class MainController extends Controller
 {
     public function home(Request $request)
     {
-        $randomPosts = Post::inRandomOrder()->limit(2)->get();
+        $randomPosts = Post::inRandomOrder()
+            ->limit(2)
+            ->with('category')
+            ->withCount('comments')
+            ->get();
 
         return inertia('Home', compact('randomPosts'));
     }

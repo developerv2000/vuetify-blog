@@ -21,6 +21,6 @@ defineProps({
 
 <style scoped>
 .v-main {
-    padding-left: 380px;
+    padding-left: 380px; /* Padding for leftbar */
 }
 </style>

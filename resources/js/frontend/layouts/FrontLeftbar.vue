@@ -1,6 +1,13 @@
 <script setup>
 import { mdiSend, mdiFacebook, mdiTwitter, mdiInstagram } from "@mdi/js";
 import profileImageUrl from "@images/frontend/profile.jpg";
+
+const icons = [
+    mdiSend,
+    mdiFacebook,
+    mdiTwitter,
+    mdiInstagram,
+];
 </script>
 
 <template>
@@ -23,12 +30,7 @@ import profileImageUrl from "@images/frontend/profile.jpg";
         <div class="d-flex justify-center ga-4 mt-5">
             <div class="links-wrapper d-flex ga-2">
                 <v-hover
-                    v-for="icon in [
-                        mdiTwitter,
-                        mdiSend,
-                        mdiFacebook,
-                        mdiInstagram,
-                    ]"
+                    v-for="icon in icons"
                     :key="icon"
                     v-slot="{ isHovering, props }"
                 >
