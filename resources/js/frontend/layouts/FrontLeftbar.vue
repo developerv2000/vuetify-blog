@@ -2,12 +2,7 @@
 import { mdiSend, mdiFacebook, mdiTwitter, mdiInstagram } from "@mdi/js";
 import profileImageUrl from "@images/frontend/profile.jpg";
 
-const icons = [
-    mdiSend,
-    mdiFacebook,
-    mdiTwitter,
-    mdiInstagram,
-];
+const icons = [mdiSend, mdiFacebook, mdiTwitter, mdiInstagram];
 </script>
 
 <template>

@@ -10,6 +10,10 @@ class Post extends Model
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
 
+    public $appends = [
+        'image_asset_url',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -18,5 +22,16 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Additional attributes
+    |--------------------------------------------------------------------------
+    */
+
+    public function getImageAssetUrlAttribute()
+    {
+        return asset('storage/images/posts/' . $this->image);
     }
 }

@@ -86,7 +86,8 @@ const dropdownItems = [
     color: #e0e0e0 !important;
 }
 
-.dropdown-button:hover, .dropdown-button:focus {
+.dropdown-button:hover,
+.dropdown-button:focus {
     color: #e0e0e0 !important;
 }
 

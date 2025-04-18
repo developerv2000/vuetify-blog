@@ -15,6 +15,14 @@ class MainController extends Controller
             ->withCount('comments')
             ->get();
 
-        return inertia('Home', compact('randomPosts'));
+        $latestPosts = Post::latest()
+            ->limit(6)
+            ->with('category')
+            ->withCount('comments')
+            ->get();
+
+        $latestPostChunks = $latestPosts->chunk(3);
+
+        return inertia('Home', compact('randomPosts', 'latestPostChunks'));
     }
 }

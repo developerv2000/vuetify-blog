@@ -3,24 +3,23 @@ import { usePage } from "@inertiajs/vue3";
 import FrontLayout from "../layouts/FrontLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import carouselImage from "@images/frontend/carousel.jpg";
-import { mdiCalendar, mdiFolder, mdiComment } from "@mdi/js";
-import { useDate } from "vuetify";
 import useConvertTimestamps from "@/shared/composables/useConvertTimestamps";
+import PostsList from "../components/posts/PostsList.vue";
+import PostCardSubtitle from "../components/posts/PostCardSubtitle.vue";
 
 // Get posts
 const page = usePage();
 const randomPosts = page.props.randomPosts;
+const latestPostChunks = page.props.latestPostChunks;
 
 // Validate posts timestamps
 const { convertTimestamps } = useConvertTimestamps();
 convertTimestamps(randomPosts);
-
-// Used in formatting dates
-const date = useDate();
 </script>
 
 <template>
     <FrontLayout>
+        <!-- Carousel -->
         <v-carousel height="460" hide-delimiters>
             <v-carousel-item
                 v-for="post in randomPosts"
@@ -35,33 +34,10 @@ const date = useDate();
                 >
                     <h2 class="text-h4">{{ post.title }}</h2>
 
-                    <div class="d-flex ga-2 mt-5 text-subtitle-2">
-                        <div class="d-flex align-center ga-1">
-                            <v-icon size="16" color="white">{{
-                                mdiCalendar
-                            }}</v-icon>
-                            <span
-                                >{{
-                                    date.format(post.created_at, "normalDate")
-                                }}
-                                {{ date.format(post.created_at, "year") }}</span
-                            >
-                        </div>
-
-                        <div class="d-flex align-center ga-1">
-                            <v-icon size="16" color="white">{{
-                                mdiFolder
-                            }}</v-icon>
-                            <span>{{ post.category.name }}</span>
-                        </div>
-
-                        <div class="d-flex align-center ga-1">
-                            <v-icon size="16" color="white">{{
-                                mdiComment
-                            }}</v-icon>
-                            <span>{{ post.comments_count }} Comments</span>
-                        </div>
-                    </div>
+                    <PostCardSubtitle
+                        class="mt-4"
+                        :post="post"
+                    ></PostCardSubtitle>
 
                     <Link :href="route('posts.show', post.id)">
                         <v-btn
@@ -75,6 +51,9 @@ const date = useDate();
                 </div>
             </v-carousel-item>
         </v-carousel>
+
+        <!-- Posts list -->
+        <PostsList :posts="latestPostChunks[0]" />
     </FrontLayout>
 </template>
 
