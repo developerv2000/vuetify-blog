@@ -2,14 +2,20 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SubscriberController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(MainController::class)->group(function () {
-    Route::get('/', [MainController::class, 'home'])->name('home');
-    Route::get('/about', [MainController::class, 'home'])->name('about');
-    Route::get('/contacts', [MainController::class, 'home'])->name('contacts');
+    Route::get('/', 'home')->name('home');
+    Route::get('/about', 'home')->name('about');
+    Route::get('/contacts', 'home')->name('contacts');
 });
 
 Route::get('/posts/{record}', [PostController::class, 'show'])->name('posts.show');
+
+Route::controller(SubscriberController::class)->group(function () {
+    Route::post('/subscribe', 'subscribe')->name('subscribe');
+    Route::post('/unsubscribe', 'unsubscribe')->name('unsubscribe');
+});
 
 require __DIR__.'/auth.php';

@@ -3,7 +3,7 @@ import useConvertTimestamps from "@/shared/composables/useConvertTimestamps";
 import PostCard from "./PostCard.vue";
 
 const { posts } = defineProps({
-    posts: Array,
+    posts: Object,
 });
 
 const { convertTimestamps } = useConvertTimestamps();

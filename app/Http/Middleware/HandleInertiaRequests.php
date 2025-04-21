@@ -49,11 +49,12 @@ class HandleInertiaRequests extends Middleware
                 // 'roles' => $request->user()?->roles->pluck('name'),
                 // 'permissions' => $request->user()?->permissions->pluck('name'),
             ],
+            'query' => $request->query(),
+            'front_flash' => session('front_flash', []),
             'ziggy' => fn() => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'query' => fn() => $request->query(),
         ];
     }
 }

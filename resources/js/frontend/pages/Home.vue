@@ -6,6 +6,7 @@ import carouselImage from "@images/frontend/carousel.jpg";
 import useConvertTimestamps from "@/shared/composables/useConvertTimestamps";
 import PostsList from "../components/posts/PostsList.vue";
 import PostCardSubtitle from "../components/posts/PostCardSubtitle.vue";
+import Subscribe from "../components/Subscribe.vue";
 
 // Get posts
 const page = usePage();
@@ -54,6 +55,12 @@ convertTimestamps(randomPosts);
 
         <!-- Posts list -->
         <PostsList :posts="latestPostChunks[0]" />
+
+        <!-- Subscrube -->
+        <Subscribe />
+
+        <!-- Posts list 2 -->
+        <PostsList :posts="latestPostChunks[1]" />
     </FrontLayout>
 </template>
 
