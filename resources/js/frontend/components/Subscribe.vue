@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { router, useForm } from "@inertiajs/vue3";
+import { router, Link } from "@inertiajs/vue3";
 
 const action = ref("Subscribe");
 const email = ref("");
@@ -19,9 +19,9 @@ function handleSubscription() {
         {
             preserveScroll: true,
             onSuccess: (page) => {
-                console.log(page.props.front_flash);
+                console.log(page.props.front_flashed);
                 message.value =
-                    page.props.front_flash?.message ?? "Action successful.";
+                    page.props.front_flashed?.message ?? "Action successful.";
 
                 action.value =
                     action.value === "Subscribe" ? "Unsubscribe" : "Subscribe";
@@ -62,6 +62,7 @@ function handleSubscription() {
                 class="email-input"
                 type="email"
                 name="email"
+                required
             />
 
             <v-btn

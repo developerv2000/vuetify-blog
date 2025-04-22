@@ -1,6 +1,7 @@
 <script setup>
 import FrontLeftbar from "./FrontLeftbar.vue";
 import FrontNavbar from "./FrontNavbar.vue";
+import FrontFooter from "./FrontFooter.vue";
 
 defineProps({
     includeLeftbar: {
@@ -12,9 +13,10 @@ defineProps({
 <template>
     <v-app class="bg-indigo-lighten-5">
         <v-main max-width="1200px" class="mx-auto w-100">
-            <FrontLeftbar v-if="includeLeftbar"></FrontLeftbar>
-            <FrontNavbar></FrontNavbar>
+            <FrontLeftbar v-if="includeLeftbar" />
+            <FrontNavbar />
             <slot></slot>
+            <FrontFooter />
         </v-main>
     </v-app>
 </template>

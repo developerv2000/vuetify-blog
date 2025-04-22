@@ -44,13 +44,13 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            'auth' => [
+            'auth' => fn() => [
                 'user' => $request->user(),
                 // 'roles' => $request->user()?->roles->pluck('name'),
                 // 'permissions' => $request->user()?->permissions->pluck('name'),
             ],
-            'query' => $request->query(),
-            'front_flash' => session('front_flash', []),
+            'query' => fn() => $request->query(),
+            'front_flashed' => fn() => session('front_flashed', []), // flash messages
             'ziggy' => fn() => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),

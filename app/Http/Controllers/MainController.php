@@ -9,20 +9,19 @@ class MainController extends Controller
 {
     public function home(Request $request)
     {
-        $randomPosts = Post::inRandomOrder()
-            ->limit(2)
-            ->with('category')
-            ->withCount('comments')
-            ->get();
+        return inertia('Home', [
+            'randomPosts' => fn () => Post::inRandomOrder()
+                ->limit(2)
+                ->with('category')
+                ->withCount('comments')
+                ->get(),
 
-        $latestPosts = Post::latest()
-            ->limit(6)
-            ->with('category')
-            ->withCount('comments')
-            ->get();
-
-        $latestPostChunks = $latestPosts->chunk(3);
-
-        return inertia('Home', compact('randomPosts', 'latestPostChunks'));
+            'latestPostChunks' => fn () => Post::latest()
+                ->limit(6)
+                ->with('category')
+                ->withCount('comments')
+                ->get()
+                ->chunk(3),
+        ]);
     }
 }

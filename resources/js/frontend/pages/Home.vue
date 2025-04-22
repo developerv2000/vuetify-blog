@@ -1,5 +1,5 @@
 <script setup>
-import { usePage } from "@inertiajs/vue3";
+import { usePage, router } from "@inertiajs/vue3";
 import FrontLayout from "../layouts/FrontLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import carouselImage from "@images/frontend/carousel.jpg";
@@ -16,6 +16,13 @@ const latestPostChunks = page.props.latestPostChunks;
 // Validate posts timestamps
 const { convertTimestamps } = useConvertTimestamps();
 convertTimestamps(randomPosts);
+
+function refreshRandomPosts() {
+    router.visit(route("home"), {
+        only: ["randomPosts"],
+        preserveScroll: true,
+    });
+}
 </script>
 
 <template>
@@ -49,6 +56,8 @@ convertTimestamps(randomPosts);
                             >Read More</v-btn
                         >
                     </Link>
+
+                    <v-btn class="mt-6 text-lowercase" @click="refreshRandomPosts">Refresh partly $randomPosts</v-btn>
                 </div>
             </v-carousel-item>
         </v-carousel>
