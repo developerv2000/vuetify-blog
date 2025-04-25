@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(MainController::class)->group(function () {
     Route::get('/', 'home')->name('home');
-    Route::get('/about', 'home')->name('about');
-    Route::get('/contacts', 'home')->name('contacts');
+    Route::get('/about', 'about')->name('about');
+    Route::get('/contacts', 'contacts')->name('contacts');
 });
 
 Route::get('/posts/{record}', [PostController::class, 'show'])->name('posts.show');
