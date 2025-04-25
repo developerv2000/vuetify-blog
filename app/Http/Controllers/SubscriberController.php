@@ -14,7 +14,7 @@ class SubscriberController extends Controller
         }
 
         return redirect()->back()->with([
-            'front_flashed.message' => 'Subscribed successfully.',
+            'flash.message' => 'Subscribed successfully.',
         ]);
     }
 
@@ -27,7 +27,7 @@ class SubscriberController extends Controller
         Subscriber::where('email', $validated['email'])->delete();
 
         return redirect()->back()->with([
-            'front_flashed.message' => 'Unsubscribed successfully.',
+            'flash.message' => 'Unsubscribed successfully.',
         ]);
     }
 }

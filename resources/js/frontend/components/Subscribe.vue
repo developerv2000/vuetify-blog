@@ -19,9 +19,8 @@ function handleSubscription() {
         {
             preserveScroll: true,
             onSuccess: (page) => {
-                console.log(page.props.front_flashed);
                 message.value =
-                    page.props.front_flashed?.message ?? "Action successful.";
+                    page.props.flash?.message ?? "Action successful.";
 
                 action.value =
                     action.value === "Subscribe" ? "Unsubscribe" : "Subscribe";
