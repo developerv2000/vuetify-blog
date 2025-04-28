@@ -32,7 +32,7 @@ const dropdownItems = [
 </script>
 
 <template>
-    <nav class="navbar w-100 d-flex justify-center ga-4 pa-4">
+    <nav class="bg-blue-grey-darken-4 navbar w-100 d-flex justify-center ga-4 pa-4">
         <Link
             v-for="link in links"
             :key="link.name"
@@ -78,10 +78,6 @@ const dropdownItems = [
 </template>
 
 <style scoped>
-.navbar {
-    background-color: #2a4b7c;
-}
-
 .navbar__link:not(.navbar__link--active):hover {
     color: #e0e0e0 !important;
 }

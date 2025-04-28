@@ -24,4 +24,9 @@ class MainController extends Controller
                 ->chunk(3),
         ]);
     }
+
+    public function about()
+    {
+        return inertia('About');
+    }
 }
