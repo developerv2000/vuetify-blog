@@ -21,9 +21,17 @@ const validatedLinks = [{ label: "Home", href: "/" }, ...props.links];
         <h4 class="text-h4 text-uppercase font-weight-bold">{{ title }}</h4>
 
         <v-breadcrumbs :items="validatedLinks" class="text-h6 text-white pa-0">
-            <template #item="{ item }">
+            <template #item="{ item, index }">
                 <v-breadcrumbs-item>
-                    <Link v-if="item.href" :href="item.href" class="breadcrumbs-link text-white text-decoration-none">{{ item.label }}</Link>
+                    <!-- If NOT last item, render link -->
+                    <Link
+                        v-if="index != validatedLinks.length - 1"
+                        :href="item.href"
+                        class="breadcrumbs-link text-white text-decoration-none"
+                        >{{ item.label }}</Link
+                    >
+
+                    <!-- If last item, render plain text -->
                     <span v-else>{{ item.label }}</span>
                 </v-breadcrumbs-item>
             </template>
